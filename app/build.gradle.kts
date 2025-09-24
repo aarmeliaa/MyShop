@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -33,9 +35,16 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+    val nav_version = "2.9.4"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
