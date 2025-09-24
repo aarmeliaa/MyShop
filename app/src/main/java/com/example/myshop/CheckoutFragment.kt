@@ -5,32 +5,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import com.example.myshop.databinding.FragmentHomeBinding
+import androidx.navigation.fragment.navArgs
+import com.example.myshop.databinding.FragmentCheckoutBinding
 
-class HomeFragment : Fragment() {
-    private var _binding: FragmentHomeBinding? = null
+class CheckoutFragment : Fragment() {
+    private var _binding: FragmentCheckoutBinding? = null
     private val binding get() = _binding!!
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding =FragmentCheckoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding) {
-            val action =
-                HomeFragmentDirections.actionHomeFragmentToCheckoutFragment(txtProductName.text.
-                toString())
-            btnBuy.setOnClickListener {
-                findNavController().navigate(action)
-            }
+        with(binding){
+            val args: CheckoutFragmentArgs by navArgs()
+            txtProductName.setText(args.productName)
         }
     }
 }
